@@ -1,26 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
+import AdminPage from './pages/AdminPage';
+import ManagerPage from './pages/ManagerPage';
+import EmployeePage from './pages/EmployeePage';
 
-function App() {
+/**
+ * App component handles routing and rendering of pages based on user roles.
+ *
+ * The application uses React Router to define routes for different user roles
+ * (admin, manager, and employee), with a login page accessible at the root path.
+ *
+ * @returns JSX.Element - The rendered application with routing.
+ */
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        {/* Login page route */}
+        <Route path="/" element={<LoginPage />} />
+        
+        {/* Routes for specific roles */}
+        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/manager" element={<ManagerPage />} />
+        <Route path="/employee" element={<EmployeePage />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
